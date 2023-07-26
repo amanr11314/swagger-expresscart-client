@@ -1,4 +1,4 @@
-## expresscart&#x3D;api@0.0.1
+## swagger-expresscart-client
 
 ### Building
 
