@@ -1,4 +1,4 @@
-## expresscart&#x3D;api@9.6.7
+## expresscart&#x3D;api@0.0.1
 
 ### Building
 
@@ -19,7 +19,7 @@ Navigate to the folder of your consuming project and run one of next commands.
 _published:_
 
 ```
-npm install expresscart&#x3D;api@9.6.7 --save
+npm install expresscart&#x3D;api@0.0.1 --save
 ```
 
 _without publishing (not recommended):_
