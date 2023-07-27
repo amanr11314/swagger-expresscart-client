@@ -11,13 +11,12 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional } from '@angular/core';
-import {
-    HttpClient, HttpHeaders, HttpParams,
-    HttpResponse, HttpEvent, HttpParameterCodec, HttpContext
-} from '@angular/common/http';
-import { CustomHttpParameterCodec } from '../encoder';
-import { Observable } from 'rxjs';
+import { Inject, Injectable, Optional }                      from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams,
+         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+        }       from '@angular/common/http';
+import { CustomHttpParameterCodec }                          from '../encoder';
+import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
 import { CreateProductRequest } from '../model/createProductRequest';
@@ -26,6 +25,8 @@ import { DeleteProductRequest } from '../model/deleteProductRequest';
 // @ts-ignore
 import { EditProductRequest } from '../model/editProductRequest';
 // @ts-ignore
+import { GetProducts200Response } from '../model/getProducts200Response';
+// @ts-ignore
 import { Product } from '../model/product';
 // @ts-ignore
 import { SuccessNoContent } from '../model/successNoContent';
@@ -33,13 +34,13 @@ import { SuccessNoContent } from '../model/successNoContent';
 import { UnauthorizedError } from '../model/unauthorizedError';
 
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Configuration } from '../configuration';
+import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
+import { Configuration }                                     from '../configuration';
 
 
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ProductCRUDOperationsService {
 
@@ -48,7 +49,7 @@ export class ProductCRUDOperationsService {
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
 
-    constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string | string[], @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string|string[], @Optional() configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
@@ -83,15 +84,15 @@ export class ProductCRUDOperationsService {
 
         if (typeof value === "object") {
             if (Array.isArray(value)) {
-                (value as any[]).forEach(elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
+                (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
                     httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
                 } else {
-                    throw Error("key may not be null if value is Date");
+                   throw Error("key may not be null if value is Date");
                 }
             } else {
-                Object.keys(value).forEach(k => httpParams = this.addToHttpParamsRecursive(
+                Object.keys(value).forEach( k => httpParams = this.addToHttpParamsRecursive(
                     httpParams, value[k], key != null ? `${key}.${k}` : k));
             }
         } else if (key != null) {
@@ -108,10 +109,10 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createProduct(createProductRequest: CreateProductRequest, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<Product>;
-    public createProduct(createProductRequest: CreateProductRequest, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<Product>>;
-    public createProduct(createProductRequest: CreateProductRequest, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<Product>>;
-    public createProduct(createProductRequest: CreateProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public createProduct(createProductRequest: CreateProductRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Product>;
+    public createProduct(createProductRequest: CreateProductRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Product>>;
+    public createProduct(createProductRequest: CreateProductRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Product>>;
+    public createProduct(createProductRequest: CreateProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (createProductRequest === null || createProductRequest === undefined) {
             throw new Error('Required parameter createProductRequest was null or undefined when calling createProduct.');
         }
@@ -184,10 +185,10 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<SuccessNoContent>;
-    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<SuccessNoContent>>;
-    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<SuccessNoContent>>;
-    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<SuccessNoContent>;
+    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<SuccessNoContent>>;
+    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<SuccessNoContent>>;
+    public deleteProduct(deleteProductRequest: DeleteProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (deleteProductRequest === null || deleteProductRequest === undefined) {
             throw new Error('Required parameter deleteProductRequest was null or undefined when calling deleteProduct.');
         }
@@ -259,10 +260,10 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public editProduct(editProductRequest: EditProductRequest, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<SuccessNoContent>;
-    public editProduct(editProductRequest: EditProductRequest, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<SuccessNoContent>>;
-    public editProduct(editProductRequest: EditProductRequest, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<SuccessNoContent>>;
-    public editProduct(editProductRequest: EditProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public editProduct(editProductRequest: EditProductRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<SuccessNoContent>;
+    public editProduct(editProductRequest: EditProductRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<SuccessNoContent>>;
+    public editProduct(editProductRequest: EditProductRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<SuccessNoContent>>;
+    public editProduct(editProductRequest: EditProductRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (editProductRequest === null || editProductRequest === undefined) {
             throw new Error('Required parameter editProductRequest was null or undefined when calling editProduct.');
         }
@@ -335,10 +336,10 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProduct(id: any, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<Product>;
-    public getProduct(id: any, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<Product>>;
-    public getProduct(id: any, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<Product>>;
-    public getProduct(id: any, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public getProduct(id: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Product>;
+    public getProduct(id: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Product>>;
+    public getProduct(id: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Product>>;
+    public getProduct(id: any, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProduct.');
         }
@@ -381,7 +382,7 @@ export class ProductCRUDOperationsService {
             }
         }
 
-        let localVarPath = `/product/details/${this.configuration.encodeParam({ name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "any", dataFormat: undefined })}`;
+        let localVarPath = `/product/details/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "any", dataFormat: undefined})}`;
         return this.httpClient.request<Product>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -402,23 +403,23 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProducts(search?: any, col?: any, order?: any, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any>;
-    public getProducts(search?: any, col?: any, order?: any, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<any>>;
-    public getProducts(search?: any, col?: any, order?: any, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<any>>;
-    public getProducts(search?: any, col?: any, order?: any, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetProducts200Response>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetProducts200Response>>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetProducts200Response>>;
+    public getProducts(search?: any, col?: any, order?: any, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
-        let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (search !== undefined && search !== null) {
-            localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                <any>search, 'search');
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>search, 'search');
         }
         if (col !== undefined && col !== null) {
-            localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                <any>col, 'col');
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>col, 'col');
         }
         if (order !== undefined && order !== null) {
-            localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                <any>order, 'order');
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>order, 'order');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -460,7 +461,7 @@ export class ProductCRUDOperationsService {
         }
 
         let localVarPath = `/product/all`;
-        return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<GetProducts200Response>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

@@ -11,6 +11,7 @@ index.ts
 model/createProductRequest.ts
 model/deleteProductRequest.ts
 model/editProductRequest.ts
+model/getProducts200Response.ts
 model/modelError.ts
 model/models.ts
 model/product.ts
