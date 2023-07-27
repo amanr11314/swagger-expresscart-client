@@ -1,7 +1,7 @@
 {
   "name": "swagger-expresscart-client",
-  "version": "0.0.1",
-  "description": "OpenAPI client for expresscart=api",
+  "version": "0.0.2",
+  "description": "OpenAPI client for expresscart using",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
