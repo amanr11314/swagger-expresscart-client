@@ -25,6 +25,8 @@ import { DeleteProductRequest } from '../model/deleteProductRequest';
 // @ts-ignore
 import { EditProductRequest } from '../model/editProductRequest';
 // @ts-ignore
+import { GetProduct200Response } from '../model/getProduct200Response';
+// @ts-ignore
 import { GetProducts200Response } from '../model/getProducts200Response';
 // @ts-ignore
 import { Product } from '../model/product';
@@ -336,9 +338,9 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProduct(id: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Product>;
-    public getProduct(id: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Product>>;
-    public getProduct(id: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Product>>;
+    public getProduct(id: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetProduct200Response>;
+    public getProduct(id: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetProduct200Response>>;
+    public getProduct(id: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetProduct200Response>>;
     public getProduct(id: any, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProduct.');
@@ -383,7 +385,7 @@ export class ProductCRUDOperationsService {
         }
 
         let localVarPath = `/product/details/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "any", dataFormat: undefined})}`;
-        return this.httpClient.request<Product>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<GetProduct200Response>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
