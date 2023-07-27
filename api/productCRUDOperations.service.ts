@@ -395,13 +395,30 @@ export class ProductCRUDOperationsService {
 
     /**
      * Get all products
+     * @param search Filter products by search query (optional)
+     * @param col Sort column (optional)
+     * @param order Sort order (optional)
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProducts(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any>;
-    public getProducts(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<any>>;
-    public getProducts(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<any>>;
-    public getProducts(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<any>>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<any>>;
+    public getProducts(search?: any, col?: any, order?: any, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (search !== undefined && search !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>search, 'search');
+        }
+        if (col !== undefined && col !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>col, 'col');
+        }
+        if (order !== undefined && order !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>order, 'order');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -445,6 +462,7 @@ export class ProductCRUDOperationsService {
         return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

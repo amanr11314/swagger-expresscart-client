@@ -1,6 +1,6 @@
 {
-  "name": "expresscart=api",
-  "version": "0.0.1",
+  "name": "swagger-expresscart-client",
+  "version": "0.0.2",
   "description": "OpenAPI client for expresscart=api",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
@@ -30,4 +30,5 @@
     "rxjs": "^7.5.5",
     "typescript": ">=4.8.2 <4.10.0",
     "zone.js": "^0.11.5"
-  }}
+  }
+}
