@@ -402,13 +402,12 @@ export class ProductCRUDOperationsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProducts(params?: { search?: any, col?: any, order?: any }, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any>;
-    public getProducts(params?: { search?: any, col?: any, order?: any }, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<any>>;
-    public getProducts(params?: { search?: any, col?: any, order?: any }, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<any>>;
-    public getProducts(params?: { search?: any, col?: any, order?: any }, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'body', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'response', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpResponse<any>>;
+    public getProducts(search?: any, col?: any, order?: any, observe?: 'events', reportProgress?: boolean, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<HttpEvent<any>>;
+    public getProducts(search?: any, col?: any, order?: any, observe: any = 'body', reportProgress: boolean = false, options?: { httpHeaderAccept?: 'application/json', context?: HttpContext }): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
-        const { search, col, order } = params;
         if (search !== undefined && search !== null) {
             localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
                 <any>search, 'search');
